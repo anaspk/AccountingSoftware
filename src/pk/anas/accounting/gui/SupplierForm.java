@@ -76,7 +76,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 10, 10);
         add(companyNameField, gridBagConstraints);
 
         jLabel2.setText("First Name");
@@ -157,7 +157,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 10, 10);
         add(line2Field, gridBagConstraints);
 
         jLabel9.setText("Line 1");
@@ -180,7 +180,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 10, 10);
         add(cityField, gridBagConstraints);
 
         jLabel11.setText("Province");
@@ -230,7 +230,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(23, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(23, 5, 10, 10);
         add(accountNoField, gridBagConstraints);
 
         jLabel14.setText("Bank Name");
@@ -245,7 +245,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         add(bankNameField, gridBagConstraints);
 
         jLabel15.setText("Branch Name");
@@ -260,7 +260,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 10, 10);
         add(branchNameField, gridBagConstraints);
 
         jLabel16.setText("Branch Code");
@@ -310,7 +310,7 @@ public class SupplierForm extends javax.swing.JPanel
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 10);
         add(line1Field, gridBagConstraints);
 
         jLabel20.setText("E_Mail Address");
