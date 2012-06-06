@@ -2,19 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pk.anas.accounting.gui;
+package pk.anas.accounting.gui.forms;
 
 /**
  *
  * @author Shahjahan
  */
-public class CapitalAccountForm extends javax.swing.JPanel
+public class ProductCategoryForm extends javax.swing.JPanel
 {
 
     /**
-     * Creates new form CapitalAccountForm
+     * Creates new form ProductCategoryForm
      */
-    public CapitalAccountForm()
+    public ProductCategoryForm()
     {
         initComponents();
     }
@@ -29,66 +29,73 @@ public class CapitalAccountForm extends javax.swing.JPanel
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        accountHolderNameTextField = new javax.swing.JTextField();
+        categoryNameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        accountBalanceTextField = new javax.swing.JTextField();
+        parentCategoryComboBox = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        initialInvestmentTextField = new javax.swing.JTextField();
-
-        jTextField1.setText("jTextField1");
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Account Holder Name");
+        jLabel1.setText("Category Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(accountHolderNameTextField, gridBagConstraints);
+        add(categoryNameField, gridBagConstraints);
 
-        jLabel2.setText("Account Balance");
+        jLabel2.setText("Parent Category");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel2, gridBagConstraints);
+
+        parentCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(accountBalanceTextField, gridBagConstraints);
+        add(parentCategoryComboBox, gridBagConstraints);
 
-        jLabel3.setText("Initial Investment");
+        jLabel3.setText("Category Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel3, gridBagConstraints);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(initialInvestmentTextField, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        add(jScrollPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField accountBalanceTextField;
-    private javax.swing.JTextField accountHolderNameTextField;
-    private javax.swing.JTextField initialInvestmentTextField;
+    private javax.swing.JTextField categoryNameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JComboBox parentCategoryComboBox;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,19 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pk.anas.accounting.gui;
+package pk.anas.accounting.gui.forms;
 
 /**
  *
  * @author Shahjahan
  */
-public class CashTransactionForm extends javax.swing.JPanel
+public class CapitalAccountForm extends javax.swing.JPanel
 {
 
     /**
-     * Creates new form CashTransactionForm
+     * Creates new form CapitalAccountForm
      */
-    public CashTransactionForm()
+    public CapitalAccountForm()
     {
         initComponents();
     }
@@ -29,29 +29,30 @@ public class CashTransactionForm extends javax.swing.JPanel
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        isCreditCheckBox = new javax.swing.JCheckBox();
+        accountHolderNameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        transactionAmountTextField = new javax.swing.JTextField();
+        accountBalanceTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cashInHandTextField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        transactionDescriptionTextArea = new javax.swing.JTextArea();
+        initialInvestmentTextField = new javax.swing.JTextField();
+
+        jTextField1.setText("jTextField1");
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Is Credit");
+        jLabel1.setText("Account Holder Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(isCreditCheckBox, gridBagConstraints);
+        add(accountHolderNameTextField, gridBagConstraints);
 
-        jLabel2.setText("Transaction Amount");
+        jLabel2.setText("Account Balance");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -64,9 +65,9 @@ public class CashTransactionForm extends javax.swing.JPanel
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(transactionAmountTextField, gridBagConstraints);
+        add(accountBalanceTextField, gridBagConstraints);
 
-        jLabel3.setText("Cash In Hand");
+        jLabel3.setText("Initial Investment");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -79,38 +80,15 @@ public class CashTransactionForm extends javax.swing.JPanel
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(cashInHandTextField, gridBagConstraints);
-
-        jLabel4.setText("Transaction Description");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(jLabel4, gridBagConstraints);
-
-        transactionDescriptionTextArea.setColumns(20);
-        transactionDescriptionTextArea.setRows(5);
-        jScrollPane1.setViewportView(transactionDescriptionTextArea);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(jScrollPane1, gridBagConstraints);
+        add(initialInvestmentTextField, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cashInHandTextField;
-    private javax.swing.JCheckBox isCreditCheckBox;
+    private javax.swing.JTextField accountBalanceTextField;
+    private javax.swing.JTextField accountHolderNameTextField;
+    private javax.swing.JTextField initialInvestmentTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField transactionAmountTextField;
-    private javax.swing.JTextArea transactionDescriptionTextArea;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

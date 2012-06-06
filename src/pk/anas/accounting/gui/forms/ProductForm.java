@@ -2,19 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pk.anas.accounting.gui;
+package pk.anas.accounting.gui.forms;
 
 /**
  *
  * @author Shahjahan
  */
-public class BankAccountForm extends javax.swing.JPanel
+public class ProductForm extends javax.swing.JPanel
 {
 
     /**
-     * Creates new form BankAccountForm
+     * Creates new form ProductForm
      */
-    public BankAccountForm()
+    public ProductForm()
     {
         initComponents();
     }
@@ -29,174 +29,168 @@ public class BankAccountForm extends javax.swing.JPanel
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        accountHolderNameTextField = new javax.swing.JTextField();
+        productNameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        accountTypeComboBox = new javax.swing.JComboBox();
+        purchasePriceField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        accountNumberTextField = new javax.swing.JTextField();
+        salesPriceField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        bankNameTextField = new javax.swing.JTextField();
+        productCategoryComboBox = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        branchNameTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productDescriptionTextArea = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        branchCodeTextField = new javax.swing.JTextField();
+        inventoryItemCheckBox = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        branchAddressTextField = new javax.swing.JTextField();
+        stockQuantityField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        branchCityTextField = new javax.swing.JTextField();
+        orderQuantityField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        accountBalanceTextField = new javax.swing.JTextField();
-
-        jTextField1.setText("jTextField1");
+        reorderQuantityField = new javax.swing.JTextField();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Account Holder Name");
+        jLabel1.setText("Product Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(accountHolderNameTextField, gridBagConstraints);
+        add(productNameField, gridBagConstraints);
 
-        jLabel2.setText("Account Number");
+        jLabel2.setText("Purchase Price");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel2, gridBagConstraints);
-
-        accountTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
-        add(accountTypeComboBox, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(purchasePriceField, gridBagConstraints);
 
-        jLabel3.setText("Account Type");
+        jLabel3.setText("Sales Price");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel3, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 10);
-        add(accountNumberTextField, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(salesPriceField, gridBagConstraints);
 
-        jLabel4.setText("Bank Name");
+        jLabel4.setText("Product Category");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel4, gridBagConstraints);
+
+        productCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 10, 10);
-        add(bankNameTextField, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(productCategoryComboBox, gridBagConstraints);
 
-        jLabel5.setText("Branch Name");
+        jLabel5.setText("Product Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel5, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 10, 10);
-        add(branchNameTextField, gridBagConstraints);
 
-        jLabel6.setText("Branch Code");
+        productDescriptionTextArea.setColumns(20);
+        productDescriptionTextArea.setRows(5);
+        jScrollPane1.setViewportView(productDescriptionTextArea);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(jScrollPane1, gridBagConstraints);
+
+        jLabel6.setText("Inventory Item");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel6, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        add(branchCodeTextField, gridBagConstraints);
-
-        jLabel7.setText("Branch Address");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 15, 10);
-        add(jLabel7, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 15, 10);
-        add(branchAddressTextField, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(inventoryItemCheckBox, gridBagConstraints);
 
-        jLabel8.setText("Branch City");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        add(jLabel8, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        add(branchCityTextField, gridBagConstraints);
-
-        jLabel9.setText("Account Balance");
+        jLabel7.setText("Quantity in Stock");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(jLabel7, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(stockQuantityField, gridBagConstraints);
+
+        jLabel8.setText("Quantity on Order");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(jLabel8, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(orderQuantityField, gridBagConstraints);
+
+        jLabel9.setText("Reorder Quantity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel9, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(accountBalanceTextField, gridBagConstraints);
+        add(reorderQuantityField, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField accountBalanceTextField;
-    private javax.swing.JTextField accountHolderNameTextField;
-    private javax.swing.JTextField accountNumberTextField;
-    private javax.swing.JComboBox accountTypeComboBox;
-    private javax.swing.JTextField bankNameTextField;
-    private javax.swing.JTextField branchAddressTextField;
-    private javax.swing.JTextField branchCityTextField;
-    private javax.swing.JTextField branchCodeTextField;
-    private javax.swing.JTextField branchNameTextField;
+    private javax.swing.JCheckBox inventoryItemCheckBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -206,6 +200,14 @@ public class BankAccountForm extends javax.swing.JPanel
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField orderQuantityField;
+    private javax.swing.JComboBox productCategoryComboBox;
+    private javax.swing.JTextArea productDescriptionTextArea;
+    private javax.swing.JTextField productNameField;
+    private javax.swing.JTextField purchasePriceField;
+    private javax.swing.JTextField reorderQuantityField;
+    private javax.swing.JTextField salesPriceField;
+    private javax.swing.JTextField stockQuantityField;
     // End of variables declaration//GEN-END:variables
 }
