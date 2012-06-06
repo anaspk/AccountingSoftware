@@ -103,13 +103,28 @@ public class SupplierDAO
         }
     }
     
-    public void addNewSupplier()
+    public void addNewSupplier( String cName, String cpfName, String cplName, String phone, String mobile, String email, String addLine1, String addLine2, String city, String province, String country, String bank, String branch, String branchCode, String accountNo )
     {
         open();
         
         try
         {
-            
+            psAddNewSupplier.setString( 1, cName );
+            psAddNewSupplier.setString( 2, cpfName );
+            psAddNewSupplier.setString( 3, cplName );
+            psAddNewSupplier.setString( 4, phone );
+            psAddNewSupplier.setString( 5, mobile );
+            psAddNewSupplier.setString( 6, email );
+            psAddNewSupplier.setString( 7, addLine1 );
+            psAddNewSupplier.setString( 8, addLine2 );
+            psAddNewSupplier.setString( 9, city );
+            psAddNewSupplier.setString( 10, province );
+            psAddNewSupplier.setString( 11, country );
+            psAddNewSupplier.setString( 12, bank );
+            psAddNewSupplier.setString( 13, branch );
+            psAddNewSupplier.setString( 14, branchCode );
+            psAddNewSupplier.setString( 15, accountNo );
+            psAddNewSupplier.executeUpdate();
         }
         catch ( SQLException e )
         {
@@ -119,13 +134,29 @@ public class SupplierDAO
         close();
     }
     
-    public void updateSupplier()
+    public void updateSupplier( int suplierID, String cName, String cpfName, String cplName, String phone, String mobile, String email, String addLine1, String addLine2, String city, String province, String country, String bank, String branch, String branchCode, String accountNo )
     {
         open();
         
         try
         {
-            
+            psAddNewSupplier.setString( 1, cName );
+            psAddNewSupplier.setString( 2, cpfName );
+            psAddNewSupplier.setString( 3, cplName );
+            psAddNewSupplier.setString( 4, phone );
+            psAddNewSupplier.setString( 5, mobile );
+            psAddNewSupplier.setString( 6, email );
+            psAddNewSupplier.setString( 7, addLine1 );
+            psAddNewSupplier.setString( 8, addLine2 );
+            psAddNewSupplier.setString( 9, city );
+            psAddNewSupplier.setString( 10, province );
+            psAddNewSupplier.setString( 11, country );
+            psAddNewSupplier.setString( 12, bank );
+            psAddNewSupplier.setString( 13, branch );
+            psAddNewSupplier.setString( 14, branchCode );
+            psAddNewSupplier.setString( 15, accountNo );
+            psAddNewSupplier.setInt( 16 , suplierID);
+            psAddNewSupplier.executeUpdate();
         }
         catch ( SQLException e )
         {
@@ -141,7 +172,8 @@ public class SupplierDAO
         
         try
         {
-            
+            psDeleteSupplier.setInt( 1, supplierID );
+            psDeleteSupplier.executeUpdate();
         }
         catch ( SQLException e )
         {
