@@ -12,6 +12,7 @@ public class CapitalTransaction
     private int capitalAccountID;
     private boolean isCredit;
     private double transactionAmount;
+    private String transactionDescription;
     private Timestamp transactionTimestamp;
 
     public int getTransactionID()
@@ -52,6 +53,16 @@ public class CapitalTransaction
     public void setTransactionAmount(double transactionAmount)
     {
         this.transactionAmount = transactionAmount;
+    }
+
+    public String getTransactionDescription()
+    {
+        return transactionDescription;
+    }
+
+    public void setTransactionDescription(String transactionDescription)
+    {
+        this.transactionDescription = transactionDescription;
     }
 
     public Timestamp getTransactionTimestamp()

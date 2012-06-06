@@ -14,7 +14,7 @@ public class BankTransactionDAO
     private ConnectionManager connectionManager;
     private Connection connection;
     private PreparedStatement psNewBankTransaction = null;
-    private PreparedStatement psUpdatebankTransaction = null ;
+    private PreparedStatement psUpdateBankTransaction = null ;
     private PreparedStatement psDeleteBankTransaction = null;
     
     private final String sqlNewBankTransaction = "INSERT INTO bank_transaction " +
@@ -28,7 +28,8 @@ public class BankTransactionDAO
     
     private final String sqlUpdateBankTransaction = "UPDATE bank_transaction " +
             "SET " +
-            "  transactionDescription = ? " +
+            "  transactionDescription = ?," +
+            "  transactionTimestamp = ? " +
             "WHERE " +
             "  transactionID = ? ;";
     
@@ -48,7 +49,7 @@ public class BankTransactionDAO
         try
         {
             psNewBankTransaction = connection.prepareStatement( sqlNewBankTransaction );
-            psUpdatebankTransaction = connection.prepareStatement( sqlUpdateBankTransaction );
+            psUpdateBankTransaction = connection.prepareStatement( sqlUpdateBankTransaction );
             psDeleteBankTransaction = connection.prepareStatement( sqlDelteBankTransaction );
         }
         catch ( SQLException e )
@@ -60,7 +61,7 @@ public class BankTransactionDAO
     public void close()
     {
         close( psNewBankTransaction );
-        close( psUpdatebankTransaction );
+        close( psUpdateBankTransaction );
         close( psDeleteBankTransaction );
         connectionManager.closeConnection();
     }
@@ -101,18 +102,20 @@ public class BankTransactionDAO
         close();
     }
     
-    public void updateTransaction( int transactionID )
+    public void updateTransaction( int transactionID, String description, Timestamp timestamp )
     {
         open();
         
         try
         {
-            psUpdatebankTransaction.setInt( 1, transactionID );
-            psUpdatebankTransaction.executeUpdate();
+            psUpdateBankTransaction.setString( 1, description );
+            psUpdateBankTransaction.setTimestamp( 2, timestamp );
+            psUpdateBankTransaction.setInt( 3, transactionID );
+            psUpdateBankTransaction.executeUpdate();
         }
         catch ( SQLException e )
         {
-            
+            e.printStackTrace();
         }
         
         close();
