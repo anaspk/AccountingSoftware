@@ -16,14 +16,23 @@ public class ProductCategoryDAO
     private PreparedStatement psUpdateCategory = null;
     private PreparedStatement psDeleteCategory = null;
     
-    private final String sqlAddNewCategory = "" +
-            "";
+    private final String sqlAddNewCategory = "INSERT INTO product_category " +
+            "( parentCategoryID, " +
+            "  categoryName, " +
+            "  categoryDescription " +
+            ") VALUES ( " +
+            " ? , ? , ? );";
     
-    private final String sqlUpdateCategory = "" +
-            "";
+    private final String sqlUpdateCategory = "UPDATE product_category " +
+            "SET " +
+            "  parentCategoryID = ? , " +
+            "  categoryName = ? , " +
+            "  categoryDescription = ? " +
+            "WHERE " +
+            "  categoryID = ? ;";
     
-    private final String sqlDeleteCategory = "" +
-            "";
+    private final String sqlDeleteCategory = "DELETE FROM product_category " +
+                                             "WHERE categoryID = ? ;";
     
     public ProductCategoryDAO( ConnectionManager connectionManager )
     {
@@ -69,4 +78,61 @@ public class ProductCategoryDAO
             }
         }
     }
+    
+    public void addNewCategory( int pCatID, String name, String description )
+    {
+        open();
+        
+        try
+        {
+            psAddNewCategory.setInt( 1, pCatID );
+            psAddNewCategory.setString( 2, name );
+            psAddNewCategory.setString( 3, description );
+            psAddNewCategory.executeUpdate();
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+        }
+        
+        close();
+    }
+    
+    public void updateCategory(int catID, int pCatID, String name, String description )
+    {
+        open();
+        
+        try
+        {
+            psUpdateCategory.setInt( 1, pCatID );
+            psUpdateCategory.setString( 2, name );
+            psUpdateCategory.setString( 3, description );
+            psUpdateCategory.setInt( 4, catID );
+            psUpdateCategory.executeUpdate();
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+        }
+        
+        close();
+    }
+    
+    public void deleteCategory( int categoryID )
+    {
+        open();
+        
+        try
+        {
+            psDeleteCategory.setInt( 1, categoryID );
+            psDeleteCategory.executeUpdate();
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+        }
+        
+        close();
+    }
+    
 }
