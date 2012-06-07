@@ -48,6 +48,9 @@ public class MainWindow extends javax.swing.JFrame
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu17 = new javax.swing.JMenu();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -161,6 +164,21 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
         jMenu4.add(jMenuItem11);
+
+        jMenu17.setText("Product Categories");
+
+        jMenuItem24.setText("Add New Category");
+        jMenu17.add(jMenuItem24);
+
+        jMenuItem25.setText("Manage Existing Categories");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu17.add(jMenuItem25);
+
+        jMenu4.add(jMenu17);
 
         jMenuBar1.add(jMenu4);
 
@@ -465,6 +483,11 @@ public class MainWindow extends javax.swing.JFrame
         this.openCashTransactionsManager();
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem25ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem25ActionPerformed
+        this.openProductsCategoriesManager();
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -532,6 +555,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JMenu jMenu14;
     private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu16;
+    private javax.swing.JMenu jMenu17;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -557,6 +581,8 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
