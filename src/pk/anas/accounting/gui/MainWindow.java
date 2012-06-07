@@ -68,7 +68,10 @@ public class MainWindow extends javax.swing.JFrame
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenu15 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -112,6 +115,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu1.add(jMenuItem2);
 
         jMenuItem9.setText("Manage Existing Customers");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem9);
 
         jMenuBar1.add(jMenu1);
@@ -127,6 +135,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu2.add(jMenuItem3);
 
         jMenuItem10.setText("Manage Existing Suppliers");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem10);
 
         jMenuBar1.add(jMenu2);
@@ -142,6 +155,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu4.add(jMenuItem4);
 
         jMenuItem11.setText("Manage Existing Products");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem11);
 
         jMenuBar1.add(jMenu4);
@@ -169,6 +187,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu10.add(jMenuItem6);
 
         jMenuItem13.setText("Manage Purchase Orders");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem13);
 
         jMenu3.add(jMenu10);
@@ -183,6 +206,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu12.add(jMenuItem14);
 
         jMenuItem15.setText("Manage Bank Accounts");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem15);
 
         jMenu5.add(jMenu12);
@@ -193,6 +221,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu13.add(jMenuItem16);
 
         jMenuItem17.setText("Manage Capital Accounts");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu13.add(jMenuItem17);
 
         jMenu5.add(jMenu13);
@@ -207,6 +240,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenu14.add(jMenuItem18);
 
         jMenuItem19.setText("Manage Bank Transactions");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu14.add(jMenuItem19);
 
         jMenu6.add(jMenu14);
@@ -216,9 +254,29 @@ public class MainWindow extends javax.swing.JFrame
         jMenuItem20.setText("New Capital Transaction");
         jMenu15.add(jMenuItem20);
 
+        jMenuItem21.setText("Manage Capital Transactions");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu15.add(jMenuItem21);
+
         jMenu6.add(jMenu15);
 
         jMenu16.setText("Cash Transactions");
+
+        jMenuItem22.setText("New Cash Transaction");
+        jMenu16.add(jMenuItem22);
+
+        jMenuItem23.setText("Manage Cash Transactions");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu16.add(jMenuItem23);
+
         jMenu6.add(jMenu16);
 
         jMenuBar1.add(jMenu6);
@@ -359,8 +417,53 @@ public class MainWindow extends javax.swing.JFrame
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem12ActionPerformed
     {//GEN-HEADEREND:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
+        this.openSalesOrdersManager();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem9ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem9ActionPerformed
+        this.openCustomersManager();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem10ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem10ActionPerformed
+        this.openSuppliersManager();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem11ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem11ActionPerformed
+        this.openProductsManager();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem13ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem13ActionPerformed
+        this.openPurchaseOrdersManager();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem15ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem15ActionPerformed
+        this.openBankAccountsManager();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem17ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem17ActionPerformed
+        this.openCapitalAccountsManager();
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem19ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem19ActionPerformed
+        this.openBankTransactionsManager();
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem21ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem21ActionPerformed
+        this.openCapitalTransactionsManager();
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem23ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem23ActionPerformed
+        this.openCashTransactionsManager();
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,6 +554,9 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
