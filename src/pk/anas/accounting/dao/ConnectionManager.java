@@ -24,6 +24,21 @@ public class ConnectionManager
     {
         return connection;
     }
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
     
     public void openConnection()
     {
@@ -31,7 +46,7 @@ public class ConnectionManager
         {
             try
             {
-                connection = DriverManager.getConnection( url, username, password );
+                connection = DriverManager.getConnection( getUrl(), getUsername(), getPassword());
             }
             catch ( SQLException e )
             {

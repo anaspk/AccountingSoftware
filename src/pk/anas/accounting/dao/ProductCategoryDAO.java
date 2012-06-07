@@ -1,8 +1,10 @@
 package pk.anas.accounting.dao;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -135,4 +137,23 @@ public class ProductCategoryDAO
         close();
     }
     
+    public CachedRowSet getDataForTableModel()
+    {
+        try
+        {
+            CachedRowSet rowSet = new CachedRowSetImpl();
+            rowSet.setUsername( connectionManager.getUsername() );
+            rowSet.setPassword( connectionManager.getPassword() );
+            rowSet.setUrl( connectionManager.getUrl() );
+            
+            rowSet.setCommand( "SELECT * FROM product_category" );
+            rowSet.execute();
+            return rowSet;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
