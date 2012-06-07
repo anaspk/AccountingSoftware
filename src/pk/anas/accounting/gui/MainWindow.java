@@ -4,6 +4,9 @@
  */
 package pk.anas.accounting.gui;
 
+import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Muhammad Anas
@@ -33,19 +36,39 @@ public class MainWindow extends javax.swing.JFrame
         centralPanel = new javax.swing.JPanel();
         dashBoard = new pk.anas.accounting.gui.DashBoard();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu13 = new javax.swing.JMenu();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenu14 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenu15 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenu16 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -63,10 +86,33 @@ public class MainWindow extends javax.swing.JFrame
 
         getContentPane().add(centralPanel, java.awt.BorderLayout.CENTER);
 
+        jMenu11.setText("File");
+
+        jMenuItem7.setText("Dashboard");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem7);
+
+        jMenuItem8.setText("Exit");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu11);
+
         jMenu1.setText("Customers");
 
         jMenuItem2.setText("Add New Customer");
         jMenu1.add(jMenuItem2);
+
+        jMenuItem9.setText("Manage Existing Customers");
+        jMenu1.add(jMenuItem9);
 
         jMenuBar1.add(jMenu1);
 
@@ -80,6 +126,9 @@ public class MainWindow extends javax.swing.JFrame
         jMenuItem3.setText("Add New Supplier");
         jMenu2.add(jMenuItem3);
 
+        jMenuItem10.setText("Manage Existing Suppliers");
+        jMenu2.add(jMenuItem10);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Products");
@@ -92,6 +141,9 @@ public class MainWindow extends javax.swing.JFrame
         });
         jMenu4.add(jMenuItem4);
 
+        jMenuItem11.setText("Manage Existing Products");
+        jMenu4.add(jMenuItem11);
+
         jMenuBar1.add(jMenu4);
 
         jMenu3.setText("Orders");
@@ -101,6 +153,14 @@ public class MainWindow extends javax.swing.JFrame
         jMenuItem5.setText("New Sales Order");
         jMenu9.add(jMenuItem5);
 
+        jMenuItem12.setText("Manage Sales Orders");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem12);
+
         jMenu3.add(jMenu9);
 
         jMenu10.setText("Purchase Orders");
@@ -108,14 +168,59 @@ public class MainWindow extends javax.swing.JFrame
         jMenuItem6.setText("New Purchase Order");
         jMenu10.add(jMenuItem6);
 
+        jMenuItem13.setText("Manage Purchase Orders");
+        jMenu10.add(jMenuItem13);
+
         jMenu3.add(jMenu10);
 
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Accounts");
+
+        jMenu12.setText("Bank Accounts");
+
+        jMenuItem14.setText("Add New Bank Account");
+        jMenu12.add(jMenuItem14);
+
+        jMenuItem15.setText("Manage Bank Accounts");
+        jMenu12.add(jMenuItem15);
+
+        jMenu5.add(jMenu12);
+
+        jMenu13.setText("Capital Accounts");
+
+        jMenuItem16.setText("Add New Capital Account");
+        jMenu13.add(jMenuItem16);
+
+        jMenuItem17.setText("Manage Capital Accounts");
+        jMenu13.add(jMenuItem17);
+
+        jMenu5.add(jMenu13);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Transactions");
+
+        jMenu14.setText("Bank Transactions");
+
+        jMenuItem18.setText("New Bank Transaction");
+        jMenu14.add(jMenuItem18);
+
+        jMenuItem19.setText("Manage Bank Transactions");
+        jMenu14.add(jMenuItem19);
+
+        jMenu6.add(jMenu14);
+
+        jMenu15.setText("Capital Transactions");
+
+        jMenuItem20.setText("New Capital Transaction");
+        jMenu15.add(jMenuItem20);
+
+        jMenu6.add(jMenu15);
+
+        jMenu16.setText("Cash Transactions");
+        jMenu6.add(jMenu16);
+
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Reports");
@@ -135,6 +240,15 @@ public class MainWindow extends javax.swing.JFrame
 
     ////////////////// -- Our Custom Methods -- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     //////////////////////////////////////////////////////////////////////////
+    public void showDashBoard()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( dashBoard, BorderLayout.CENTER );
+        this.revalidate();
+    }
+    
     public void openCustomersManager()
     {
         centralPanel.removeAll();
@@ -230,6 +344,24 @@ public class MainWindow extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem8ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem8ActionPerformed
+        int choice = JOptionPane.showConfirmDialog( this, "Are you sure you want to exit the\nAccounting Software", "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION );
+        
+        if ( choice == 0 )
+            System.exit( 0 );
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem7ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem7ActionPerformed
+        showDashBoard();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem12ActionPerformed
+    {//GEN-HEADEREND:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,6 +423,12 @@ public class MainWindow extends javax.swing.JFrame
     private pk.anas.accounting.gui.DashBoard dashBoard;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu14;
+    private javax.swing.JMenu jMenu15;
+    private javax.swing.JMenu jMenu16;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -301,10 +439,24 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
