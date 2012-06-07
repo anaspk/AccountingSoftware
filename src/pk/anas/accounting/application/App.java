@@ -1,6 +1,6 @@
 package pk.anas.accounting.application;
 
-import pk.anas.accounting.gui.MainWindowOld;
+import pk.anas.accounting.gui.MainWindow;
 
 /**
  *
@@ -8,8 +8,8 @@ import pk.anas.accounting.gui.MainWindowOld;
  */
 public class App
 {
-    public static void main( String args[] )
-    {
-        new MainWindowOld();
-    }
+//    public static void main( String args[] )
+//    {
+//        new MainWindow();
+//    }
 }

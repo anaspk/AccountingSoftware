@@ -17,6 +17,7 @@ public class MainWindow extends javax.swing.JFrame
     public MainWindow()
     {
         initComponents();
+        dashBoard.setParentWindow( this );
     }
 
     /**
@@ -27,7 +28,10 @@ public class MainWindow extends javax.swing.JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        centralPanel = new javax.swing.JPanel();
+        dashBoard = new pk.anas.accounting.gui.DashBoard();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -50,6 +54,15 @@ public class MainWindow extends javax.swing.JFrame
         setTitle("AccountingSoftware");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        centralPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        centralPanel.add(dashBoard, gridBagConstraints);
+
+        getContentPane().add(centralPanel, java.awt.BorderLayout.CENTER);
+
         jMenu1.setText("Customers");
 
         jMenuItem2.setText("Add New Customer");
@@ -58,6 +71,11 @@ public class MainWindow extends javax.swing.JFrame
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Suppliers");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setText("Add New Supplier");
         jMenu2.add(jMenuItem3);
@@ -112,24 +130,105 @@ public class MainWindow extends javax.swing.JFrame
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    ////////////////// -- Our Custom Methods -- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    //////////////////////////////////////////////////////////////////////////
+    public void openCustomersManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openSuppliersManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openSalesOrdersManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openPurchaseOrdersManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openProductsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openProductsCategoriesManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openBankAccountsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openCapitalAccountsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openBankTransactionsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openCapitalTransactionsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openCashTransactionsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    
+    public void openReportsManager()
+    {
+        centralPanel.removeAll();
+        centralPanel.repaint();
+        this.revalidate();
+    }
+    //////////////////////////////////////////////////////////////////////////
+    
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem4ActionPerformed
     {//GEN-HEADEREND:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenu2ActionPerformed
+    {//GEN-HEADEREND:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +287,8 @@ public class MainWindow extends javax.swing.JFrame
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel centralPanel;
+    private pk.anas.accounting.gui.DashBoard dashBoard;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
