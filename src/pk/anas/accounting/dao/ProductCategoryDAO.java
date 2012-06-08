@@ -3,6 +3,7 @@ package pk.anas.accounting.dao;
 import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.rowset.CachedRowSet;
 
@@ -17,6 +18,7 @@ public class ProductCategoryDAO
     private PreparedStatement psAddNewCategory = null;
     private PreparedStatement psUpdateCategory = null;
     private PreparedStatement psDeleteCategory = null;
+    private PreparedStatement psCategoryNameByID = null;
     
     private final String sqlAddNewCategory = "INSERT INTO product_category " +
             "( parentCategoryID, " +
@@ -36,6 +38,9 @@ public class ProductCategoryDAO
     private final String sqlDeleteCategory = "DELETE FROM product_category " +
                                              "WHERE categoryID = ? ;";
     
+    private final String sqlCategoryNameByID = "SELECT categoryName FROM product_category " +
+                                               "WHERE categoryID = ? ;";
+    
     public ProductCategoryDAO( ConnectionManager connectionManager )
     {
         this.connectionManager = connectionManager;
@@ -51,6 +56,7 @@ public class ProductCategoryDAO
             psAddNewCategory = connection.prepareStatement( sqlAddNewCategory );
             psUpdateCategory = connection.prepareStatement( sqlUpdateCategory );
             psDeleteCategory = connection.prepareStatement( sqlDeleteCategory );
+            psCategoryNameByID = connection.prepareStatement( sqlCategoryNameByID );
         }
         catch ( SQLException e )
         {
@@ -63,6 +69,7 @@ public class ProductCategoryDAO
         close( psAddNewCategory );
         close( psUpdateCategory );
         close( psDeleteCategory );
+        close( psCategoryNameByID );
         connectionManager.closeConnection();
     }
     
@@ -135,6 +142,31 @@ public class ProductCategoryDAO
         }
         
         close();
+    }
+    
+    public String getCategoryNameByID( int categoryID )
+    {
+        open();
+        
+        try
+        {
+            psCategoryNameByID.setInt( 1, categoryID );
+            ResultSet resultSet = psCategoryNameByID.executeQuery();
+            
+            if ( resultSet.next() )
+                return resultSet.getString( "categoryName" );
+            else
+                return null;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
+        finally
+        {
+            close();
+        }
     }
     
     public CachedRowSet getDataForTableModel()

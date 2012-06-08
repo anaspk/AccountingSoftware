@@ -18,6 +18,7 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class ProductCategoriesManager extends JPanel
 {
+    private ConnectionManager connectionManager;
     private ProductCategoryDAO productCategoryDAO;
     private JScrollPane displayTableScrollPane;
     private JTable displayTable;
@@ -38,7 +39,8 @@ public class ProductCategoriesManager extends JPanel
     public ProductCategoriesManager( ConnectionManager connectionManager )
     {
         super();
-        productCategoryDAO = new ProductCategoryDAO( connectionManager );
+        this.connectionManager = connectionManager;
+        productCategoryDAO = new ProductCategoryDAO( this.connectionManager );
         displayTableModel = new CustomTableModel( productCategoryDAO.getDataForTableModel() );
         displayTable = new JTable( displayTableModel );
         displayTable.doLayout();
@@ -70,7 +72,7 @@ public class ProductCategoriesManager extends JPanel
         updateSelected = new JButton( "Update Category" );
         deleteSelected = new JButton( "Delete Category" );
         backToTable = new JButton( "Back To Data Display" );
-        editingForm = new ProductCategoryForm();
+        editingForm = new ProductCategoryForm( this.connectionManager );
         
         this.setLayout( new BorderLayout() );
         middlePanel = new JPanel();

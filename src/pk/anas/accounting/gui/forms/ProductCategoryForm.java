@@ -4,12 +4,18 @@
  */
 package pk.anas.accounting.gui.forms;
 
+import pk.anas.accounting.dao.ConnectionManager;
+import pk.anas.accounting.dao.ProductCategoryDAO;
+import pk.anas.accounting.entities.ProductCategory;
+
 /**
  *
  * @author Shahjahan
  */
 public class ProductCategoryForm extends javax.swing.JPanel
 {
+    ConnectionManager connectionManager;
+    ProductCategoryDAO productCategoryDAO;
 
     /**
      * Creates new form ProductCategoryForm
@@ -18,7 +24,26 @@ public class ProductCategoryForm extends javax.swing.JPanel
     {
         initComponents();
     }
+    
+    public ProductCategoryForm( ConnectionManager connectionManager )
+    {
+        initComponents();
+        
+        this.connectionManager = connectionManager;
+        productCategoryDAO = new ProductCategoryDAO( this.connectionManager );
+    }
 
+    public void populate( ProductCategory category )
+    {
+        populate( category.getCategoryName(), category.getParentCategoryID(), category.getCategoryDescription() );
+    }
+    
+    public void populate( String name, int parentID, String description )
+    {
+        categoryNameField.setText( name );
+        parentCategoryCombo.setSelectedItem( productCategoryDAO.getCategoryNameByID( parentID ) );
+        categoryDescriptionArea.setText( description );
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,10 +57,10 @@ public class ProductCategoryForm extends javax.swing.JPanel
         jLabel1 = new javax.swing.JLabel();
         categoryNameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        parentCategoryComboBox = new javax.swing.JComboBox();
+        parentCategoryCombo = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        categoryDescriptionArea = new javax.swing.JTextArea();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -60,13 +85,13 @@ public class ProductCategoryForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel2, gridBagConstraints);
 
-        parentCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        parentCategoryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(parentCategoryComboBox, gridBagConstraints);
+        add(parentCategoryCombo, gridBagConstraints);
 
         jLabel3.setText("Category Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -76,9 +101,9 @@ public class ProductCategoryForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel3, gridBagConstraints);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        categoryDescriptionArea.setColumns(20);
+        categoryDescriptionArea.setRows(5);
+        jScrollPane1.setViewportView(categoryDescriptionArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -86,16 +111,16 @@ public class ProductCategoryForm extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 12, 5, 12);
         add(jScrollPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea categoryDescriptionArea;
     private javax.swing.JTextField categoryNameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JComboBox parentCategoryComboBox;
+    private javax.swing.JComboBox parentCategoryCombo;
     // End of variables declaration//GEN-END:variables
 }
