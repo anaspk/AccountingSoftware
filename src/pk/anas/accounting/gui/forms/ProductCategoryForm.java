@@ -4,6 +4,7 @@
  */
 package pk.anas.accounting.gui.forms;
 
+import java.util.LinkedList;
 import pk.anas.accounting.dao.ConnectionManager;
 import pk.anas.accounting.dao.ProductCategoryDAO;
 import pk.anas.accounting.entities.ProductCategory;
@@ -31,6 +32,18 @@ public class ProductCategoryForm extends javax.swing.JPanel
         
         this.connectionManager = connectionManager;
         productCategoryDAO = new ProductCategoryDAO( this.connectionManager );
+        updateParentComboItems();
+    }
+    
+    public void updateParentComboItems()
+    {
+        parentCategoryCombo.removeAllItems();
+        
+        LinkedList<String> parentCategories = productCategoryDAO.getAllCategoryNames();
+        
+        parentCategoryCombo.addItem( "" ); // allow no choice
+        for ( String category : parentCategories )
+            parentCategoryCombo.addItem( category );
     }
 
     public void populate( ProductCategory category )

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.sql.rowset.CachedRowSet;
 
 /**
@@ -18,7 +19,8 @@ public class ProductCategoryDAO
     private PreparedStatement psAddNewCategory = null;
     private PreparedStatement psUpdateCategory = null;
     private PreparedStatement psDeleteCategory = null;
-    private PreparedStatement psCategoryNameByID = null;
+    private PreparedStatement psGetCategoryNameByID = null;
+    private PreparedStatement psGetAllCategoryNames = null;
     
     private final String sqlAddNewCategory = "INSERT INTO product_category " +
             "( parentCategoryID, " +
@@ -38,8 +40,12 @@ public class ProductCategoryDAO
     private final String sqlDeleteCategory = "DELETE FROM product_category " +
                                              "WHERE categoryID = ? ;";
     
-    private final String sqlCategoryNameByID = "SELECT categoryName FROM product_category " +
-                                               "WHERE categoryID = ? ;";
+    private final String sqlGetCategoryNameByID = "SELECT categoryName FROM product_category " +
+                                                  "WHERE categoryID = ? ;";
+    
+    private final String sqlGetAllCategoryNames = "SELECT categoryName " +
+                                                  "FROM product_category " +
+                                                  "ORDER BY categoryName;";
     
     public ProductCategoryDAO( ConnectionManager connectionManager )
     {
@@ -56,7 +62,8 @@ public class ProductCategoryDAO
             psAddNewCategory = connection.prepareStatement( sqlAddNewCategory );
             psUpdateCategory = connection.prepareStatement( sqlUpdateCategory );
             psDeleteCategory = connection.prepareStatement( sqlDeleteCategory );
-            psCategoryNameByID = connection.prepareStatement( sqlCategoryNameByID );
+            psGetCategoryNameByID = connection.prepareStatement( sqlGetCategoryNameByID );
+            psGetAllCategoryNames = connection.prepareStatement( sqlGetAllCategoryNames );
         }
         catch ( SQLException e )
         {
@@ -69,7 +76,8 @@ public class ProductCategoryDAO
         close( psAddNewCategory );
         close( psUpdateCategory );
         close( psDeleteCategory );
-        close( psCategoryNameByID );
+        close( psGetCategoryNameByID );
+        close( psGetAllCategoryNames );
         connectionManager.closeConnection();
     }
     
@@ -150,8 +158,8 @@ public class ProductCategoryDAO
         
         try
         {
-            psCategoryNameByID.setInt( 1, categoryID );
-            ResultSet resultSet = psCategoryNameByID.executeQuery();
+            psGetCategoryNameByID.setInt( 1, categoryID );
+            ResultSet resultSet = psGetCategoryNameByID.executeQuery();
             
             if ( resultSet.next() )
                 return resultSet.getString( "categoryName" );
@@ -166,6 +174,32 @@ public class ProductCategoryDAO
         finally
         {
             close();
+        }
+    }
+    
+    public LinkedList<String> getAllCategoryNames()
+    {
+        open();
+        
+        try
+        {
+            ResultSet resultSet = psGetAllCategoryNames.executeQuery();
+            
+            LinkedList<String> namesList = new LinkedList<String>();
+            
+            while ( resultSet.next() )
+                namesList.add( resultSet.getString( "categoryName" ) );
+            
+            return namesList;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
+        finally
+        {
+            close();        
         }
     }
     
