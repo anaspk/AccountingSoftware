@@ -195,10 +195,11 @@ public class SupplierDAO
             rowSet.setUrl( connectionManager.getUrl() );
             
             rowSet.setCommand( "SELECT supplierID AS 'Supplier ID', " +
-                    "supplierID AS 'Supplier ID', " +
-                    "paymentMethod AS 'Payment Method', " +
-                    "orderSubtotal AS 'Order Subtotal', " +
-                    "amountPaid AS 'Amount Paid', " +
+                    "companyName AS 'Company ID', " +
+                    "contactPersonFirstName AS 'Contact Person First Name', " +
+                    "contactPersonLastName AS 'Contact Person Last Name', " +
+                    "mobileNumber AS 'Mobile Number', " +
+                    "emailAddress AS 'Email Address' " +
                     "FROM supplier;" );
             rowSet.execute();
             return rowSet;
