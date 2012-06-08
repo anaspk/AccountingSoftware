@@ -147,7 +147,7 @@ public class CapitalAccountDAO
             
             rowSet.setCommand( "SELECT accountID AS 'Account ID', " +
                     "accountHolderName AS 'Account Holder', " +
-                    "account AS Balance, " +
+                    "accountBalance AS Balance, " +
                     "initialInvestment AS 'Initial Investment' " +
                     "FROM capital_account;" );
             rowSet.execute();

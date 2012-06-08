@@ -170,7 +170,7 @@ public class BankAccountDAO
                     "accountNumber AS 'Account Number', " +
                     "accountHolderName AS 'Account Holder', " +
                     "bankName AS Bank, " +
-                    "branchName AS Branch, " +
+                    "bankBranchName AS Branch, " +
                     "accountBalance AS Balance " +
                     "FROM bank_account;" );
             rowSet.execute();

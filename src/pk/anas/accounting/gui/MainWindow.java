@@ -389,10 +389,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
-        
-        centralPanel.setLayout( new BorderLayout() );
-        centralPanel.add( purchaseOrdersManager, BorderLayout.CENTER );
-        
+//        
+//        centralPanel.setLayout( new BorderLayout() );
+//        centralPanel.add( purchaseOrdersManager, BorderLayout.CENTER );
+//        
         this.revalidate();
     }
     
@@ -400,10 +400,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
-        
-        centralPanel.setLayout( new BorderLayout() );
-        centralPanel.add( productsManager, BorderLayout.CENTER );
-        
+//        
+//        centralPanel.setLayout( new BorderLayout() );
+//        centralPanel.add( productsManager, BorderLayout.CENTER );
+//        
         this.revalidate();
     }
     
@@ -477,9 +477,9 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
-        
-        centralPanel.setLayout( new BorderLayout() );
-        centralPanel.add( productsCategoriesManager, BorderLayout.CENTER );
+//        
+//        centralPanel.setLayout( new BorderLayout() );
+//        centralPanel.add( productsCategoriesManager, BorderLayout.CENTER );
         
         this.revalidate();
     }
