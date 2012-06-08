@@ -42,7 +42,7 @@ public class ProductDAO
     private final String sqlDeleteProduct = "DELETE FROM product  " +
                                             "WHERE productID = ? ;";
     
-    public ProductDAO( ConnectionManager conectionManager )
+    public ProductDAO( ConnectionManager connectionManager )
     {
         this.connectionManager = connectionManager;
     }
