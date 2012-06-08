@@ -7,7 +7,7 @@ package pk.anas.accounting.gui;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 import pk.anas.accounting.dao.ConnectionManager;
-import pk.anas.accounting.gui.managers.ProductCategoriesManager;
+import pk.anas.accounting.gui.managers.*;
 
 /**
  *
@@ -15,8 +15,18 @@ import pk.anas.accounting.gui.managers.ProductCategoriesManager;
  */
 public class MainWindow extends javax.swing.JFrame
 {
-    ConnectionManager connectionManager;
-    ProductCategoriesManager productCategoriesManager;
+    private ConnectionManager connectionManager;
+    private BankAccountsManager bankAccountsManager;
+    private BankTransactionsManager bankTransactionsManager;
+    private CapitalAccountsManager capitalAccountsManager;
+    private CapitalTransactionsManager capitalTransactionsManager;
+    private CashTransactionsManager cashTransactionsManager;
+    private CustomersManager customersManager;
+    private ProductCategoriesManager productsCategoriesManager;
+    private ProductsManager productsManager;
+    private PurchaseOrdersManager purchaseOrdersManager;
+    private SalesOrdersManager salesOrdersManager;
+    private SuppliersManager suppliersManager;
 
     /**
      * Creates new form MainWindow
@@ -24,9 +34,20 @@ public class MainWindow extends javax.swing.JFrame
     public MainWindow()
     {
         initComponents();
+        
         dashBoard.setParentWindow( this );
         connectionManager = new ConnectionManager();
-        productCategoriesManager = new ProductCategoriesManager( connectionManager );
+        bankAccountsManager = new BankAccountsManager( connectionManager );
+        bankTransactionsManager = new BankTransactionsManager( connectionManager );
+        capitalAccountsManager = new CapitalAccountsManager( connectionManager );
+        capitalTransactionsManager = new CapitalTransactionsManager( connectionManager);
+        cashTransactionsManager = new CashTransactionsManager( connectionManager );
+        customersManager = new CustomersManager( connectionManager);
+        productsCategoriesManager = new ProductCategoriesManager( connectionManager );
+        productsManager = new ProductsManager( connectionManager);
+        purchaseOrdersManager = new PurchaseOrdersManager( connectionManager);
+        salesOrdersManager = new SalesOrdersManager( connectionManager);
+        suppliersManager = new SuppliersManager( connectionManager);
     }
 
     /**
@@ -335,6 +356,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( customersManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -342,6 +367,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( suppliersManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -349,6 +378,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( salesOrdersManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -356,6 +389,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( purchaseOrdersManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -363,6 +400,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( productsManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -372,7 +413,7 @@ public class MainWindow extends javax.swing.JFrame
         centralPanel.repaint();
         
         centralPanel.setLayout( new BorderLayout() );
-        centralPanel.add( productCategoriesManager, BorderLayout.CENTER );
+        centralPanel.add( productsCategoriesManager, BorderLayout.CENTER );
         
         this.revalidate();
     }
@@ -381,6 +422,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( bankAccountsManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -388,6 +433,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( capitalAccountsManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -395,6 +444,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( bankTransactionsManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -402,6 +455,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( capitalTransactionsManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -409,6 +466,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( cashTransactionsManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
@@ -416,6 +477,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( productsCategoriesManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     //////////////////////////////////////////////////////////////////////////
