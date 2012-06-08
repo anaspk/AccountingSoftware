@@ -1,8 +1,10 @@
 package pk.anas.accounting.dao;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -176,5 +178,32 @@ public class CustomerDAO
         }
         
         close();
+    }
+    
+    public CachedRowSet getDataForTableModel()
+    {
+        try
+        {
+            CachedRowSet rowSet = new CachedRowSetImpl();
+            rowSet.setUsername( connectionManager.getUsername() );
+            rowSet.setPassword( connectionManager.getPassword() );
+            rowSet.setUrl( connectionManager.getUrl() );
+            
+            rowSet.setCommand( "SELECT customerID AS 'Customer ID', " +
+                    "firstName AS 'First Name', " +
+                    "lastName AS 'Last Name', " +
+                    "mobileNumber AS 'Mobile Number', " +
+                    "emailAddress AS 'Email Address', " +
+                    "city AS City, " +
+                    "country AS Country " +
+                    "FROM customer;" );
+            rowSet.execute();
+            return rowSet;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
