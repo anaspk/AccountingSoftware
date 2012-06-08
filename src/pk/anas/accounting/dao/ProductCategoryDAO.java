@@ -146,7 +146,11 @@ public class ProductCategoryDAO
             rowSet.setPassword( connectionManager.getPassword() );
             rowSet.setUrl( connectionManager.getUrl() );
             
-            rowSet.setCommand( "SELECT * FROM product_category" );
+            rowSet.setCommand( "SELECT categoryName AS 'Category Name', " +
+                    "categoryDescription AS 'Category Description', " +
+                    "categoryID AS 'Category ID', " +
+                    "parentCategoryID AS 'Parent Category ID' " +
+                    "FROM product_category;" );
             rowSet.execute();
             return rowSet;
         }

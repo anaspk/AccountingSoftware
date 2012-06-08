@@ -6,6 +6,8 @@ package pk.anas.accounting.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
+import pk.anas.accounting.dao.ConnectionManager;
+import pk.anas.accounting.gui.managers.ProductCategoriesManager;
 
 /**
  *
@@ -13,6 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class MainWindow extends javax.swing.JFrame
 {
+    ConnectionManager connectionManager;
+    ProductCategoriesManager productCategoriesManager;
 
     /**
      * Creates new form MainWindow
@@ -21,6 +25,8 @@ public class MainWindow extends javax.swing.JFrame
     {
         initComponents();
         dashBoard.setParentWindow( this );
+        connectionManager = new ConnectionManager();
+        productCategoriesManager = new ProductCategoriesManager( connectionManager );
     }
 
     /**
@@ -364,6 +370,10 @@ public class MainWindow extends javax.swing.JFrame
     {
         centralPanel.removeAll();
         centralPanel.repaint();
+        
+        centralPanel.setLayout( new BorderLayout() );
+        centralPanel.add( productCategoriesManager, BorderLayout.CENTER );
+        
         this.revalidate();
     }
     
