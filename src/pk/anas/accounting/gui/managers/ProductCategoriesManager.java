@@ -42,7 +42,7 @@ public class ProductCategoriesManager extends JPanel
         toolBar = new JToolBar();
         addNew = new JButton( "Add New Category" );
         updateSelected = new JButton( "Update Category" );
-        deleteSelected = new JButton( "Delete category" );
+        deleteSelected = new JButton( "Delete Category" );
         backToTable = new JButton( "Back To Data Display" );
         editingForm = new ProductCategoryForm();
         
