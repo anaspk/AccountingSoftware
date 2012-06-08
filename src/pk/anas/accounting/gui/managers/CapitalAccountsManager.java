@@ -5,17 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import pk.anas.accounting.dao.ConnectionManager;
-import pk.anas.accounting.dao.ProductCategoryDAO;
-import pk.anas.accounting.gui.forms.ProductCategoryForm;
+import pk.anas.accounting.dao.CapitalAccountDAO;
+import pk.anas.accounting.gui.forms.CapitalAccountForm;
 import pk.anas.accounting.gui.models.CustomTableModel;
 
 /**
  *
  * @author Muhammad Anas
  */
-public class ProductCategoriesManager extends JPanel
+public class CapitalAccountsManager extends JPanel
 {
-    ProductCategoryDAO productCategoryDAO;
+    CapitalAccountDAO capitalAccountDAO;
     JScrollPane displayTableScrollPane;
     JTable displayTable;
     CustomTableModel displayTableModel;
@@ -25,26 +25,26 @@ public class ProductCategoriesManager extends JPanel
     JButton updateSelected;
     JButton deleteSelected;
     JButton backToTable;
-    ProductCategoryForm editingForm;
+    CapitalAccountForm editingForm;
     JButton saveButton;
     JButton updateButton;
     
-    public ProductCategoriesManager( ConnectionManager connectionManager )
+    public CapitalAccountsManager( ConnectionManager connectionManager )
     {
         super();
-        productCategoryDAO = new ProductCategoryDAO( connectionManager );
-        displayTableModel = new CustomTableModel( productCategoryDAO.getDataForTableModel() );
+        capitalAccountDAO = new CapitalAccountDAO( connectionManager );
+        displayTableModel = new CustomTableModel( capitalAccountDAO.getDataForTableModel() );
         displayTable = new JTable( displayTableModel );
         displayTable.doLayout();
         displayTable.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
         displayTableScrollPane = new JScrollPane( displayTable );
         
         toolBar = new JToolBar();
-        addNew = new JButton( "Add New Category" );
-        updateSelected = new JButton( "Update Category" );
-        deleteSelected = new JButton( "Delete category" );
+        addNew = new JButton( "Add New Account" );
+        updateSelected = new JButton( "Update Account" );
+        deleteSelected = new JButton( "Delete Account" );
         backToTable = new JButton( "Back To Data Display" );
-        editingForm = new ProductCategoryForm();
+        editingForm = new CapitalAccountForm();
         
         this.setLayout( new BorderLayout() );
         middlePanel = new JPanel();
@@ -62,7 +62,7 @@ public class ProductCategoriesManager extends JPanel
                     
                     middlePanel.add( editingForm, BorderLayout.NORTH );
                     backToTable.setEnabled( true );
-                    ProductCategoriesManager.this.revalidate();
+                    CapitalAccountsManager.this.revalidate();
                 }
             }
         );
@@ -80,7 +80,7 @@ public class ProductCategoriesManager extends JPanel
                     middlePanel.add( editingForm, BorderLayout.NORTH );
                     backToTable.setEnabled( true );
                     
-                    ProductCategoriesManager.this.revalidate();
+                    CapitalAccountsManager.this.revalidate();
                 }
             }
         );
@@ -113,7 +113,7 @@ public class ProductCategoriesManager extends JPanel
                     deleteSelected.setEnabled( false );
                     backToTable.setEnabled( false );
                     
-                    ProductCategoriesManager.this.revalidate();
+                    CapitalAccountsManager.this.revalidate();
                 }
             }
         );
