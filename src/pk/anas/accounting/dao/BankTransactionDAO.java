@@ -1,9 +1,11 @@
 package pk.anas.accounting.dao;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -136,5 +138,29 @@ public class BankTransactionDAO
         }
         
         close();
+    }
+    
+    public CachedRowSet getDataForTableModel()
+    {
+        try
+        {
+            CachedRowSet rowSet = new CachedRowSetImpl();
+            rowSet.setUsername( connectionManager.getUsername() );
+            rowSet.setPassword( connectionManager.getPassword() );
+            rowSet.setUrl( connectionManager.getUrl() );
+            
+            rowSet.setCommand( "SELECT transactionID AS 'Transaction ID', " +
+                    "bankAccountID AS 'Bank Account ID', " +
+                    "transactionAmount AS Amount, " +
+                    "transactionDescription AS Description " +
+                    "FROM bank_transaction;" );
+            rowSet.execute();
+            return rowSet;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
