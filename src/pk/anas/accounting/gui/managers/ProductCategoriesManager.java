@@ -1,9 +1,12 @@
 package pk.anas.accounting.gui.managers;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import pk.anas.accounting.dao.ConnectionManager;
 import pk.anas.accounting.dao.ProductCategoryDAO;
 import pk.anas.accounting.gui.forms.ProductCategoryForm;
@@ -15,19 +18,22 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class ProductCategoriesManager extends JPanel
 {
-    ProductCategoryDAO productCategoryDAO;
-    JScrollPane displayTableScrollPane;
-    JTable displayTable;
-    CustomTableModel displayTableModel;
-    JPanel middlePanel;
-    JToolBar toolBar;
-    JButton addNew;
-    JButton updateSelected;
-    JButton deleteSelected;
-    JButton backToTable;
-    ProductCategoryForm editingForm;
-    JButton saveButton;
-    JButton updateButton;
+    private ProductCategoryDAO productCategoryDAO;
+    private JScrollPane displayTableScrollPane;
+    private JTable displayTable;
+    private CustomTableModel displayTableModel;
+    private JPanel middlePanel;
+    private JPanel middleBottomPanel;
+    private JToolBar toolBar;
+    private JButton addNew;
+    private JButton updateSelected;
+    private JButton deleteSelected;
+    private JButton backToTable;
+    private ProductCategoryForm editingForm;
+    private JButton saveButton;
+    private JButton updateButton;
+    private int noOfSelectedRows;
+    private int choice;
     
     public ProductCategoriesManager( ConnectionManager connectionManager )
     {
@@ -37,6 +43,26 @@ public class ProductCategoriesManager extends JPanel
         displayTable = new JTable( displayTableModel );
         displayTable.doLayout();
         displayTable.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
+        displayTable.getSelectionModel().addListSelectionListener( 
+                new ListSelectionListener()
+                {
+                    @Override
+                    public void valueChanged( ListSelectionEvent e )
+                    {
+                        noOfSelectedRows = displayTable.getSelectedRowCount();
+                        if ( noOfSelectedRows == -1 )
+                        {
+                            updateSelected.setEnabled( false );
+                            deleteSelected.setEnabled( false );
+                        }
+                        else
+                        {
+                            updateSelected.setEnabled( true );
+                            deleteSelected.setEnabled( true );
+                        }
+                    }
+                }
+        );
         displayTableScrollPane = new JScrollPane( displayTable );
         
         toolBar = new JToolBar();
@@ -52,6 +78,11 @@ public class ProductCategoriesManager extends JPanel
         middlePanel.setLayout( new BorderLayout() );
         middlePanel.add( displayTableScrollPane, BorderLayout.CENTER );
         
+        saveButton = new JButton( "Save" );
+        updateButton = new JButton( "Update" );
+        middleBottomPanel = new JPanel();
+        middleBottomPanel.setLayout( new FlowLayout() );
+        
         addNew.addActionListener( new ActionListener()
             {
                 @Override
@@ -61,6 +92,11 @@ public class ProductCategoriesManager extends JPanel
                     middlePanel.repaint();
                     
                     middlePanel.add( editingForm, BorderLayout.NORTH );
+                    middleBottomPanel.removeAll();
+                    middleBottomPanel.repaint();
+                    middleBottomPanel.add( saveButton );
+                    middlePanel.add( middleBottomPanel, BorderLayout.SOUTH );
+                    
                     backToTable.setEnabled( true );
                     ProductCategoriesManager.this.revalidate();
                 }
@@ -78,8 +114,16 @@ public class ProductCategoriesManager extends JPanel
                     middlePanel.repaint();
                     
                     middlePanel.add( editingForm, BorderLayout.NORTH );
-                    backToTable.setEnabled( true );
+                    middleBottomPanel.removeAll();
+                    middleBottomPanel.repaint();
+                    middleBottomPanel.add( updateButton );
+                    middlePanel.add( middleBottomPanel, BorderLayout.SOUTH );
                     
+                    int pid = Integer.parseInt( (String) displayTable.getValueAt( displayTable.getSelectedRow(), 2 ) );
+                    
+                    JOptionPane.showMessageDialog( null , ""+pid );
+                                        
+                    backToTable.setEnabled( true );
                     ProductCategoriesManager.this.revalidate();
                 }
             }
@@ -92,8 +136,16 @@ public class ProductCategoriesManager extends JPanel
                 @Override
                 public void actionPerformed( ActionEvent e )
                 {
+                    int catID = Integer.parseInt( (String) displayTable.getValueAt( displayTable.getSelectedRow(), 2 ) );
+                    choice = JOptionPane.showConfirmDialog( ProductCategoriesManager.this, "Are you sure you want to delete\nselected product category?",
+                            "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION );
+                    if ( choice == 0 )
+                        productCategoryDAO.deleteCategory( catID );
                     
                     backToTable.setEnabled( true );
+                    ( (CustomTableModel)displayTable.getModel() ).refresh();
+                    displayTable.revalidate();
+                    //ProductCategoriesManager.this.revalidate();
                 }
             }
         );

@@ -114,4 +114,17 @@ public class CustomTableModel implements TableModel
         
     }
     
+    public void refresh()
+    {
+        try
+        {
+            //rowSet.release();
+            rowSet.execute();
+            rowSet.beforeFirst();
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+        }
+    }
 }
