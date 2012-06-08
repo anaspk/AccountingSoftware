@@ -1,9 +1,11 @@
 package pk.anas.accounting.dao;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -140,5 +142,30 @@ public class SalesOrderDAO
         }
         
         close();
+    }
+    
+    public CachedRowSet getDataForTableModel()
+    {
+        try
+        {
+            CachedRowSet rowSet = new CachedRowSetImpl();
+            rowSet.setUsername( connectionManager.getUsername() );
+            rowSet.setPassword( connectionManager.getPassword() );
+            rowSet.setUrl( connectionManager.getUrl() );
+            
+            rowSet.setCommand( "SELECT orderID AS 'Order ID', " +
+                    "customerID AS 'Customer ID', " +
+                    "paymentMethod AS 'Payment Method', " +
+                    "orderSubtotal AS 'Order Subtotal', " +
+                    "amountPaid AS 'Amount Paid' " +
+                    "FROM sales_order;" );
+            rowSet.execute();
+            return rowSet;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
