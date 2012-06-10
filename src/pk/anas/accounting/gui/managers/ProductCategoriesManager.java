@@ -96,6 +96,19 @@ public class ProductCategoriesManager extends JPanel
                     middlePanel.add( editingForm, BorderLayout.NORTH );
                     middleBottomPanel.removeAll();
                     middleBottomPanel.repaint();
+                    saveButton.addActionListener(
+                        new ActionListener()
+                        {
+                            @Override
+                            public void actionPerformed( ActionEvent eve )
+                            {
+                                if ( editingForm.validateForm() )
+                                {
+                                    
+                                }
+                            }
+                        }
+                    );
                     middleBottomPanel.add( saveButton );
                     middlePanel.add( middleBottomPanel, BorderLayout.SOUTH );
                     
@@ -142,12 +155,14 @@ public class ProductCategoriesManager extends JPanel
                     choice = JOptionPane.showConfirmDialog( ProductCategoriesManager.this, "Are you sure you want to delete\nselected product category?",
                             "Are you sure?", JOptionPane.YES_NO_CANCEL_OPTION );
                     if ( choice == 0 )
+                    {
                         productCategoryDAO.deleteCategory( catID );
                     
-                    backToTable.setEnabled( true );
-                    ( (CustomTableModel)displayTable.getModel() ).refresh();
-                    displayTable.revalidate();
-                    //ProductCategoriesManager.this.revalidate();
+                        //backToTable.setEnabled( true );
+                        ( (CustomTableModel)displayTable.getModel() ).refresh();
+                        displayTable.revalidate();
+                        //ProductCategoriesManager.this.revalidate();
+                    }
                 }
             }
         );

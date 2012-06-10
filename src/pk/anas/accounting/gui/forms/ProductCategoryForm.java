@@ -5,6 +5,7 @@
 package pk.anas.accounting.gui.forms;
 
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 import pk.anas.accounting.dao.ConnectionManager;
 import pk.anas.accounting.dao.ProductCategoryDAO;
 import pk.anas.accounting.entities.ProductCategory;
@@ -46,16 +47,43 @@ public class ProductCategoryForm extends javax.swing.JPanel
             parentCategoryCombo.addItem( category );
     }
 
-    public void populate( ProductCategory category )
+    public void populateForm( ProductCategory category )
     {
-        populate( category.getCategoryName(), category.getParentCategoryID(), category.getCategoryDescription() );
+        populateForm( category.getCategoryName(), category.getParentCategoryID(), category.getCategoryDescription() );
     }
     
-    public void populate( String name, int parentID, String description )
+    public void populateForm( String name, int parentID, String description )
     {
         categoryNameField.setText( name );
         parentCategoryCombo.setSelectedItem( productCategoryDAO.getCategoryNameByID( parentID ) );
         categoryDescriptionArea.setText( description );
+    }
+    
+    public boolean validateForm()
+    {
+        String errorMessage = "";
+        
+        if ( categoryNameField.getText().compareTo( "" ) == 0 )
+            errorMessage += "Category Name field could not be left blank.";
+        
+        if ( errorMessage.compareTo( "" ) != 0 )
+        {
+            JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE );
+            return false;
+        }
+        else
+            return true;
+    }
+    
+    public ProductCategory getCategoryObject()
+    {
+        ProductCategory category = new ProductCategory();
+        
+        category.setCategoryName( categoryNameField.getText() );
+        category.setParentCategoryID( productCategoryDAO.getCategoryIDByName( ( (String)parentCategoryCombo.getSelectedItem() ) ) );
+        category.setCategoryDescription( categoryDescriptionArea.getText() );
+        
+        return category;
     }
     /**
      * This method is called from within the constructor to initialize the form.

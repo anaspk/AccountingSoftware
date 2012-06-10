@@ -177,6 +177,11 @@ public class ProductCategoryDAO
         }
     }
     
+    public int getCategoryIDByName( String categoryName )
+    {
+        
+    }
+    
     public LinkedList<String> getAllCategoryNames()
     {
         open();
