@@ -5,6 +5,9 @@
 package pk.anas.accounting.gui.forms;
 
 import javax.swing.JOptionPane;
+import pk.anas.accounting.dao.ConnectionManager;
+import pk.anas.accounting.dao.ProductCategoryDAO;
+import pk.anas.accounting.dao.ProductDAO;
 import pk.anas.accounting.entities.Product;
 
 /**
@@ -13,6 +16,9 @@ import pk.anas.accounting.entities.Product;
  */
 public class ProductForm extends javax.swing.JPanel
 {
+    private ConnectionManager connectionManager;
+    private ProductDAO productDAO;
+    private ProductCategoryDAO productCategoryDAO;
 
     /**
      * Creates new form ProductForm
@@ -22,6 +28,21 @@ public class ProductForm extends javax.swing.JPanel
         initComponents();
     }
 
+    public ProductForm( ConnectionManager connectionManager )
+    {
+        initComponents();
+        
+        this.connectionManager = connectionManager;
+        productDAO = new ProductDAO( this.connectionManager );
+        productCategoryDAO = new ProductCategoryDAO( this.connectionManager );
+        populateCategoriesCombo();
+    }
+    
+    public void populateCategoriesCombo()
+    {
+        
+    }
+    
     public void populateForm( Product product )
     {
         
@@ -46,6 +67,8 @@ public class ProductForm extends javax.swing.JPanel
             return true;
         }
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
