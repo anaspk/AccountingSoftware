@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import pk.anas.accounting.dao.ConnectionManager;
 import pk.anas.accounting.dao.ProductCategoryDAO;
+import pk.anas.accounting.entities.ProductCategory;
 import pk.anas.accounting.gui.forms.ProductCategoryForm;
 import pk.anas.accounting.gui.models.CustomTableModel;
 
@@ -104,7 +105,9 @@ public class ProductCategoriesManager extends JPanel
                             {
                                 if ( editingForm.validateForm() )
                                 {
-                                    
+                                    ProductCategory category = editingForm.getCategoryObject();
+                                    productCategoryDAO.addNewCategory( category.getParentCategoryID(),
+                                            category.getCategoryName(), category.getCategoryDescription() );
                                 }
                             }
                         }
@@ -135,9 +138,9 @@ public class ProductCategoriesManager extends JPanel
                     middlePanel.add( middleBottomPanel, BorderLayout.SOUTH );
                     
                     int pid = Integer.parseInt( (String) displayTable.getValueAt( displayTable.getSelectedRow(), 2 ) );
+                    ProductCategory category = productCategoryDAO.getCategoryByID( pid );
+                    editingForm.populateForm( category );
                     
-                    JOptionPane.showMessageDialog( null , ""+pid );
-                                        
                     backToTable.setEnabled( true );
                     ProductCategoriesManager.this.revalidate();
                 }

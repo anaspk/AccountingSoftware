@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.sql.rowset.CachedRowSet;
+import pk.anas.accounting.entities.ProductCategory;
 
 /**
  *
@@ -20,6 +21,8 @@ public class ProductCategoryDAO
     private PreparedStatement psUpdateCategory = null;
     private PreparedStatement psDeleteCategory = null;
     private PreparedStatement psGetCategoryNameByID = null;
+    private PreparedStatement psGetCategoryIDByName = null;
+    private PreparedStatement psGetCategoryByID = null;
     private PreparedStatement psGetAllCategoryNames = null;
     
     private final String sqlAddNewCategory = "INSERT INTO product_category " +
@@ -43,6 +46,13 @@ public class ProductCategoryDAO
     private final String sqlGetCategoryNameByID = "SELECT categoryName FROM product_category " +
                                                   "WHERE categoryID = ? ;";
     
+    private final String sqlGetCategoryIDByName = "SELECT categoryID FROM product_category " +
+                                                  "WHERE categoryName = ? ;";
+    
+    private final String sqlGetCategoryByID = "SELECT categoryID, parentCategoryID, categoryName, categoryDescription " +
+                                           "FROM product_category " +
+                                           "WHERE categoryId = ? ;";
+    
     private final String sqlGetAllCategoryNames = "SELECT categoryName " +
                                                   "FROM product_category " +
                                                   "ORDER BY categoryName;";
@@ -63,6 +73,8 @@ public class ProductCategoryDAO
             psUpdateCategory = connection.prepareStatement( sqlUpdateCategory );
             psDeleteCategory = connection.prepareStatement( sqlDeleteCategory );
             psGetCategoryNameByID = connection.prepareStatement( sqlGetCategoryNameByID );
+            psGetCategoryIDByName = connection.prepareStatement( sqlGetCategoryIDByName );
+            psGetCategoryByID = connection.prepareStatement( sqlGetCategoryByID );
             psGetAllCategoryNames = connection.prepareStatement( sqlGetAllCategoryNames );
         }
         catch ( SQLException e )
@@ -77,6 +89,8 @@ public class ProductCategoryDAO
         close( psUpdateCategory );
         close( psDeleteCategory );
         close( psGetCategoryNameByID );
+        close( psGetCategoryIDByName );
+        close( psGetCategoryByID );
         close( psGetAllCategoryNames );
         connectionManager.closeConnection();
     }
@@ -179,7 +193,60 @@ public class ProductCategoryDAO
     
     public int getCategoryIDByName( String categoryName )
     {
+        open();
         
+        try
+        {
+            psGetCategoryIDByName.setString ( 1, categoryName );
+            ResultSet resultSet = psGetCategoryIDByName.executeQuery();
+            if ( resultSet.next() )
+            {
+                int id = resultSet.getInt( "categoryID" );
+                return id;
+            }
+            else
+                return 0;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return 0;
+        }
+        finally
+        {
+            close();
+        }
+    }
+    
+    public ProductCategory getCategoryByID( int catID )
+    {
+        open();
+        
+        try
+        {
+            psGetCategoryByID.setInt( 1, catID );
+            ResultSet resultSet = psGetCategoryByID.executeQuery();
+            if ( resultSet.next() )
+            {
+                ProductCategory category = new ProductCategory();
+                category.setCategoryID( resultSet.getInt( "categoryID" ) );
+                category.setParentCategoryID( resultSet.getInt( "parentCategoryID" ) );
+                category.setCategoryName( resultSet.getString( "categoryName" ) );
+                category.setCategoryDescription( resultSet.getString( "categoryDescription" ) );
+                return category;
+            }
+            else
+                return null;
+        }
+        catch ( SQLException e )
+        {
+            e.printStackTrace();
+            return null;
+        }
+        finally
+        {
+            close();
+        }
     }
     
     public LinkedList<String> getAllCategoryNames()
