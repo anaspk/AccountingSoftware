@@ -4,6 +4,9 @@
  */
 package pk.anas.accounting.gui.forms;
 
+import javax.swing.JOptionPane;
+import pk.anas.accounting.entities.Product;
+
 /**
  *
  * @author Shahjahan
@@ -19,6 +22,30 @@ public class ProductForm extends javax.swing.JPanel
         initComponents();
     }
 
+    public void populateForm( Product product )
+    {
+        
+    }
+    
+    public boolean validateForm()
+    {
+        String errorMessage = "";
+        
+        if ( productNameField.getText().compareTo( "" ) == 0 )
+            errorMessage += "Product name field couldn\'t be left blank";
+        if ( salesPriceField.getText().compareTo( "" ) == 0 )
+            errorMessage += "Please enter a sales price for this product";
+        
+        if ( errorMessage.compareTo( "" ) != 0 )
+        {
+            JOptionPane.showMessageDialog( this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE );
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
