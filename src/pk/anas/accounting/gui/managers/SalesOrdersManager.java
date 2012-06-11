@@ -15,19 +15,19 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class SalesOrdersManager extends JPanel
 {
-    SalesOrderDAO salesOrderDAO;
-    JScrollPane displayTableScrollPane;
-    JTable displayTable;
-    CustomTableModel displayTableModel;
-    JPanel middlePanel;
-    JToolBar toolBar;
-    JButton addNew;
-    JButton updateSelected;
-    JButton deleteSelected;
-    JButton backToTable;
-    SalesOrderForm editingForm;
-    JButton saveButton;
-    JButton updateButton;
+    private SalesOrderDAO salesOrderDAO;
+    private JScrollPane displayTableScrollPane;
+    private JTable displayTable;
+    private CustomTableModel displayTableModel;
+    private JPanel middlePanel;
+    private JToolBar toolBar;
+    private JButton addNew;
+    private JButton updateSelected;
+    private JButton deleteSelected;
+    private JButton backToTable;
+    private SalesOrderForm editingForm;
+    private JButton saveButton;
+    private JButton updateButton;
     
     public SalesOrdersManager( ConnectionManager connectionManager )
     {

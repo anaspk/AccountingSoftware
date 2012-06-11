@@ -15,19 +15,19 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class SuppliersManager extends JPanel
 {
-    SupplierDAO supplierDAO;
-    JScrollPane displayTableScrollPane;
-    JTable displayTable;
-    CustomTableModel displayTableModel;
-    JPanel middlePanel;
-    JToolBar toolBar;
-    JButton addNew;
-    JButton updateSelected;
-    JButton deleteSelected;
-    JButton backToTable;
-    SupplierForm editingForm;
-    JButton saveButton;
-    JButton updateButton;
+    private SupplierDAO supplierDAO;
+    private JScrollPane displayTableScrollPane;
+    private JTable displayTable;
+    private CustomTableModel displayTableModel;
+    private JPanel middlePanel;
+    private JToolBar toolBar;
+    private JButton addNew;
+    private JButton updateSelected;
+    private JButton deleteSelected;
+    private JButton backToTable;
+    private SupplierForm editingForm;
+    private JButton saveButton;
+    private JButton updateButton;
     
     public SuppliersManager( ConnectionManager connectionManager )
     {

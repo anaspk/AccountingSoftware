@@ -15,19 +15,19 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class CustomersManager extends JPanel
 {
-    CustomerDAO customerDAO;
-    JScrollPane displayTableScrollPane;
-    JTable displayTable;
-    CustomTableModel displayTableModel;
-    JPanel middlePanel;
-    JToolBar toolBar;
-    JButton addNew;
-    JButton updateSelected;
-    JButton deleteSelected;
-    JButton backToTable;
-    CustomerForm editingForm;
-    JButton saveButton;
-    JButton updateButton;
+    private CustomerDAO customerDAO;
+    private JScrollPane displayTableScrollPane;
+    private JTable displayTable;
+    private CustomTableModel displayTableModel;
+    private JPanel middlePanel;
+    private JToolBar toolBar;
+    private JButton addNew;
+    private JButton updateSelected;
+    private JButton deleteSelected;
+    private JButton backToTable;
+    private CustomerForm editingForm;
+    private JButton saveButton;
+    private JButton updateButton;
     
     public CustomersManager( ConnectionManager connectionManager )
     {

@@ -15,19 +15,19 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class BankAccountsManager extends JPanel
 {
-    BankAccountDAO bankAccountDAO;
-    JScrollPane displayTableScrollPane;
-    JTable displayTable;
-    CustomTableModel displayTableModel;
-    JPanel middlePanel;
-    JToolBar toolBar;
-    JButton addNew;
-    JButton updateSelected;
-    JButton deleteSelected;
-    JButton backToTable;
-    BankAccountForm editingForm;
-    JButton saveButton;
-    JButton updateButton;
+    private BankAccountDAO bankAccountDAO;
+    private JScrollPane displayTableScrollPane;
+    private JTable displayTable;
+    private CustomTableModel displayTableModel;
+    private JPanel middlePanel;
+    private JToolBar toolBar;
+    private JButton addNew;
+    private JButton updateSelected;
+    private JButton deleteSelected;
+    private JButton backToTable;
+    private BankAccountForm editingForm;
+    private JButton saveButton;
+    private JButton updateButton;
     
     public BankAccountsManager( ConnectionManager connectionManager )
     {
