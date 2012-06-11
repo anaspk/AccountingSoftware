@@ -1,11 +1,14 @@
 package pk.anas.accounting.gui.managers;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import pk.anas.accounting.dao.ConnectionManager;
+import pk.anas.accounting.dao.InventoryItemDAO;
 import pk.anas.accounting.dao.ProductDAO;
+import pk.anas.accounting.entities.Product;
 import pk.anas.accounting.gui.forms.ProductForm;
 import pk.anas.accounting.gui.models.CustomTableModel;
 
@@ -15,24 +18,27 @@ import pk.anas.accounting.gui.models.CustomTableModel;
  */
 public class ProductsManager extends JPanel
 {
-    ProductDAO productDAO;
-    JScrollPane displayTableScrollPane;
-    JTable displayTable;
-    CustomTableModel displayTableModel;
-    JPanel middlePanel;
-    JToolBar toolBar;
-    JButton addNew;
-    JButton updateSelected;
-    JButton deleteSelected;
-    JButton backToTable;
-    ProductForm editingForm;
-    JButton saveButton;
-    JButton updateButton;
+    private ProductDAO productDAO;
+    private InventoryItemDAO inventoryItemDAO;
+    private JScrollPane displayTableScrollPane;
+    private JTable displayTable;
+    private CustomTableModel displayTableModel;
+    private JPanel middlePanel;
+    private JPanel middleBottomPanel;
+    private JToolBar toolBar;
+    private JButton addNew;
+    private JButton updateSelected;
+    private JButton deleteSelected;
+    private JButton backToTable;
+    private ProductForm editingForm;
+    private JButton saveButton;
+    private JButton updateButton;
     
     public ProductsManager( ConnectionManager connectionManager )
     {
         super();
         productDAO = new ProductDAO( connectionManager );
+        inventoryItemDAO = new InventoryItemDAO( connectionManager );
         displayTableModel = new CustomTableModel( productDAO.getDataForTableModel() );
         displayTable = new JTable( displayTableModel );
         displayTable.doLayout();
@@ -52,6 +58,11 @@ public class ProductsManager extends JPanel
         middlePanel.setLayout( new BorderLayout() );
         middlePanel.add( displayTableScrollPane, BorderLayout.CENTER );
         
+        saveButton = new JButton( "Save" );
+        updateButton = new JButton( "Update" );
+        middleBottomPanel = new JPanel();
+        middleBottomPanel.setLayout( new FlowLayout() );
+        
         addNew.addActionListener( new ActionListener()
             {
                 @Override
@@ -62,6 +73,29 @@ public class ProductsManager extends JPanel
                     
                     editingForm.populateCategoriesCombo();
                     middlePanel.add( editingForm, BorderLayout.NORTH );
+                    
+                    middleBottomPanel.removeAll();
+                    middleBottomPanel.repaint();
+                    saveButton.addActionListener(
+                        new ActionListener()
+                        {
+                            @Override
+                            public void actionPerformed( ActionEvent eve )
+                            {
+                                if ( editingForm.validateForm() )
+                                {
+                                    Product product = editingForm.getProductObject();
+                                    productDAO.addNewProduct( product.getCategoryID(), product.getProductName(), product.getUnitPurchasePrice(),
+                                            product.getUnitSalePrice(), product.getProductDescription(), product.isInventoryItem() );
+                                    if ( product.isInventoryItem() )
+                                        ;
+                                }
+                            }
+                        }
+                    );
+                    middleBottomPanel.add( saveButton );
+                    middlePanel.add( middleBottomPanel, BorderLayout.SOUTH );
+                    
                     backToTable.setEnabled( true );
                     ProductsManager.this.revalidate();
                 }

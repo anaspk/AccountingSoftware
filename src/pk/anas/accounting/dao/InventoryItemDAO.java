@@ -6,5 +6,10 @@ package pk.anas.accounting.dao;
  */
 public class InventoryItemDAO
 {
+    private ConnectionManager connectionManager;
     
+    public InventoryItemDAO( ConnectionManager connectionManager )
+    {
+        this.connectionManager = connectionManager;
+    }
 }

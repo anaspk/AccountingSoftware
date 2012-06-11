@@ -94,6 +94,7 @@ public class ProductCategoriesManager extends JPanel
                     middlePanel.removeAll();
                     middlePanel.repaint();
                     
+                    editingForm.updateParentComboItems();
                     middlePanel.add( editingForm, BorderLayout.NORTH );
                     middleBottomPanel.removeAll();
                     middleBottomPanel.repaint();

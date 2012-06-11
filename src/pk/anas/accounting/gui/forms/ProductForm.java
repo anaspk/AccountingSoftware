@@ -99,6 +99,9 @@ public class ProductForm extends javax.swing.JPanel
         if ( product.isInventoryItem() )
         {
             inventoryItemCheckBox.setSelected( true );
+            stockQuantityField.setText( ""+product.getStockQuantity() );
+            orderQuantityField.setText( ""+product.getOrderQuantity() );
+            reorderQuantityField.setText( ""+product.getReorderQuantity() );
         }
         else
             inventoryItemCheckBox.setSelected( false );
@@ -111,9 +114,16 @@ public class ProductForm extends javax.swing.JPanel
         if ( productNameField.getText().compareTo( "" ) == 0 )
             errorMessage += "Product name field couldn\'t be left blank";
         if ( salesPriceField.getText().compareTo( "" ) == 0 )
-            errorMessage += "Please enter a sales price for this product";
+            errorMessage += "\nPlease enter a sales price for this product";
         if ( productCategoryCombo.getSelectedIndex() == 0 )
-            errorMessage += "Please select a category for this product.";
+            errorMessage += "\nPlease select a category for this product.";
+        if ( inventoryItemCheckBox.isSelected() )
+        {
+            if ( stockQuantityField.getText().compareTo( "" ) == 0 )
+                errorMessage += "\nQuantity in Stock field couldn\'t be left blank";
+            if ( orderQuantityField.getText().compareTo( "" ) == 0 )
+                errorMessage += "\nQuantity on order field couldn\'t be left blank";
+        }
         
         if ( errorMessage.compareTo( "" ) != 0 )
         {
@@ -126,6 +136,30 @@ public class ProductForm extends javax.swing.JPanel
         }
     }
     
+    public Product getProductObject()
+    {
+        Product product = new Product();
+        
+        product.setProductName( productNameField.getText() );
+        if ( purchasePriceField.getText().compareTo( "" ) != 0 )
+            product.setUnitPurchasePrice( Double.parseDouble( purchasePriceField.getText() ) );
+        else
+            product.setUnitPurchasePrice( 0.0 );
+        product.setUnitSalePrice( Double.parseDouble( salesPriceField.getText() ) );
+        product.setCategoryID( productCategoryDAO.getCategoryIDByName( (String)productCategoryCombo.getSelectedItem() ) );
+        product.setProductDescription( productDescriptionArea.getText() );
+        if ( inventoryItemCheckBox.isSelected() )
+        {
+            product.setInventoryItem(true);
+            product.setStockQuantity( Integer.parseInt( stockQuantityField.getText() ) );
+            product.setOrderQuantity( Integer.parseInt( orderQuantityField.getText() ) );
+            if ( reorderQuantityField.getText().compareTo( "" ) != 0 )
+                product.setReorderQuantity( Integer.parseInt( reorderQuantityField.getText() ) );
+            else
+                product.setReorderQuantity( 0 );
+        }
+        return product;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
