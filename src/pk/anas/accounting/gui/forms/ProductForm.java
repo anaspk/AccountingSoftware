@@ -4,6 +4,9 @@
  */
 package pk.anas.accounting.gui.forms;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import pk.anas.accounting.dao.ConnectionManager;
 import pk.anas.accounting.dao.ProductCategoryDAO;
@@ -35,17 +38,70 @@ public class ProductForm extends javax.swing.JPanel
         this.connectionManager = connectionManager;
         productDAO = new ProductDAO( this.connectionManager );
         productCategoryDAO = new ProductCategoryDAO( this.connectionManager );
+        
+        stockQuantityLabel.setVisible( false );
+        stockQuantityField.setVisible( false );
+        orderQuantityLabel.setVisible( false );
+        orderQuantityField.setVisible( false );
+        reorderQuantityLabel.setVisible( false );
+        reorderQuantityField.setVisible( false );
+        
+        inventoryItemCheckBox.addItemListener(
+            new ItemListener()
+            {
+                @Override
+                public void itemStateChanged( ItemEvent eve )
+                {
+                    if ( eve.getStateChange() == ItemEvent.SELECTED )
+                    {
+                        stockQuantityLabel.setVisible( true );
+                        stockQuantityField.setVisible( true );
+                        orderQuantityLabel.setVisible( true );
+                        orderQuantityField.setVisible( true );
+                        reorderQuantityLabel.setVisible( true );
+                        reorderQuantityField.setVisible( true );
+                        ProductForm.this.revalidate();
+                    }
+                    else
+                    {
+                        stockQuantityLabel.setVisible( false );
+                        stockQuantityField.setVisible( false );
+                        orderQuantityLabel.setVisible( false );
+                        orderQuantityField.setVisible( false );
+                        reorderQuantityLabel.setVisible( false );
+                        reorderQuantityField.setVisible( false );
+                        ProductForm.this.revalidate();
+                    }
+                }
+            }
+        );
         populateCategoriesCombo();
     }
     
     public void populateCategoriesCombo()
     {
+        productCategoryCombo.removeAllItems();
         
+        LinkedList<String> productCategories = productCategoryDAO.getAllCategoryNames();
+        
+        productCategoryCombo.addItem( "" ); // force to choose a category manually
+        for ( String category : productCategories )
+            productCategoryCombo.addItem( category );
     }
     
     public void populateForm( Product product )
     {
-        
+        productNameField.setText( product.getProductName() );
+        purchasePriceField.setText( ""+product.getUnitPurchasePrice() );
+        salesPriceField.setText( ""+product.getUnitSalePrice() );
+        productCategoryCombo.setSelectedItem( productCategoryDAO.getCategoryNameByID( product.getCategoryID() ) );
+        productDescriptionArea.setText( product.getProductDescription() );
+        if ( product.isInventoryItem() )
+        {
+            inventoryItemCheckBox.setSelected( true );
+        }
+        else
+            inventoryItemCheckBox.setSelected( false );
     }
     
     public boolean validateForm()
@@ -56,6 +112,8 @@ public class ProductForm extends javax.swing.JPanel
             errorMessage += "Product name field couldn\'t be left blank";
         if ( salesPriceField.getText().compareTo( "" ) == 0 )
             errorMessage += "Please enter a sales price for this product";
+        if ( productCategoryCombo.getSelectedIndex() == 0 )
+            errorMessage += "Please select a category for this product.";
         
         if ( errorMessage.compareTo( "" ) != 0 )
         {
@@ -86,17 +144,17 @@ public class ProductForm extends javax.swing.JPanel
         jLabel3 = new javax.swing.JLabel();
         salesPriceField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        productCategoryComboBox = new javax.swing.JComboBox();
+        productCategoryCombo = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        productDescriptionTextArea = new javax.swing.JTextArea();
+        productDescriptionArea = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         inventoryItemCheckBox = new javax.swing.JCheckBox();
-        jLabel7 = new javax.swing.JLabel();
+        stockQuantityLabel = new javax.swing.JLabel();
         stockQuantityField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        orderQuantityLabel = new javax.swing.JLabel();
         orderQuantityField = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        reorderQuantityLabel = new javax.swing.JLabel();
         reorderQuantityField = new javax.swing.JTextField();
 
         setLayout(new java.awt.GridBagLayout());
@@ -152,13 +210,13 @@ public class ProductForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel4, gridBagConstraints);
 
-        productCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productCategoryCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(productCategoryComboBox, gridBagConstraints);
+        add(productCategoryCombo, gridBagConstraints);
 
         jLabel5.setText("Product Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -168,9 +226,9 @@ public class ProductForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jLabel5, gridBagConstraints);
 
-        productDescriptionTextArea.setColumns(20);
-        productDescriptionTextArea.setRows(5);
-        jScrollPane1.setViewportView(productDescriptionTextArea);
+        productDescriptionArea.setColumns(20);
+        productDescriptionArea.setRows(5);
+        jScrollPane1.setViewportView(productDescriptionArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -194,13 +252,13 @@ public class ProductForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(inventoryItemCheckBox, gridBagConstraints);
 
-        jLabel7.setText("Quantity in Stock");
+        stockQuantityLabel.setText("Quantity in Stock");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(jLabel7, gridBagConstraints);
+        add(stockQuantityLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -209,13 +267,13 @@ public class ProductForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(stockQuantityField, gridBagConstraints);
 
-        jLabel8.setText("Quantity on Order");
+        orderQuantityLabel.setText("Quantity on Order");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(jLabel8, gridBagConstraints);
+        add(orderQuantityLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -224,13 +282,13 @@ public class ProductForm extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(orderQuantityField, gridBagConstraints);
 
-        jLabel9.setText("Reorder Quantity");
+        reorderQuantityLabel.setText("Reorder Quantity");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(jLabel9, gridBagConstraints);
+        add(reorderQuantityLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -247,17 +305,17 @@ public class ProductForm extends javax.swing.JPanel
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField orderQuantityField;
-    private javax.swing.JComboBox productCategoryComboBox;
-    private javax.swing.JTextArea productDescriptionTextArea;
+    private javax.swing.JLabel orderQuantityLabel;
+    private javax.swing.JComboBox productCategoryCombo;
+    private javax.swing.JTextArea productDescriptionArea;
     private javax.swing.JTextField productNameField;
     private javax.swing.JTextField purchasePriceField;
     private javax.swing.JTextField reorderQuantityField;
+    private javax.swing.JLabel reorderQuantityLabel;
     private javax.swing.JTextField salesPriceField;
     private javax.swing.JTextField stockQuantityField;
+    private javax.swing.JLabel stockQuantityLabel;
     // End of variables declaration//GEN-END:variables
 }

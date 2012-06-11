@@ -44,7 +44,7 @@ public class ProductsManager extends JPanel
         updateSelected = new JButton( "Update Product" );
         deleteSelected = new JButton( "Delete Product" );
         backToTable = new JButton( "Back To Data Display" );
-        editingForm = new ProductForm();
+        editingForm = new ProductForm( connectionManager );
         
         this.setLayout( new BorderLayout() );
         middlePanel = new JPanel();
@@ -60,6 +60,7 @@ public class ProductsManager extends JPanel
                     middlePanel.removeAll();
                     middlePanel.repaint();
                     
+                    editingForm.populateCategoriesCombo();
                     middlePanel.add( editingForm, BorderLayout.NORTH );
                     backToTable.setEnabled( true );
                     ProductsManager.this.revalidate();

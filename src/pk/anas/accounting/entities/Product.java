@@ -12,8 +12,14 @@ public class Product
     private double unitPurchasePrice;
     private double unitSalePrice;
     private String productDescription;
-    private boolean isInventoryItem;
+    private boolean inventoryItem;
+    private InventoryItem inventoryRecord;
 
+    public Product()
+    {
+        inventoryRecord = new InventoryItem();
+    }
+    
     public int getProductID()
     {
         return productID;
@@ -74,13 +80,45 @@ public class Product
         this.productDescription = productDescription;
     }
 
-    public boolean isIsInventoryItem()
+    public void setInventoryItem(boolean inventoryItem)
     {
-        return isInventoryItem;
+        this.inventoryItem = inventoryItem;
+        if ( inventoryItem )
+            inventoryRecord.setProductID( this.getProductID() );
     }
 
-    public void setIsInventoryItem(boolean isInventoryItem)
+    public boolean isInventoryItem()
     {
-        this.isInventoryItem = isInventoryItem;
+        return inventoryItem;
+    }
+    
+    public int getStockQuantity()
+    {
+        return inventoryRecord.getQuantityInStock();
+    }
+    
+    public void setStockQuantity( int quantity )
+    {
+        inventoryRecord.setQuantityInStock( quantity );
+    }
+    
+    public int getOrderQuantity()
+    {
+        return inventoryRecord.getQuantityOnOrder();
+    }
+    
+    public void setOrderQuantity( int quantity )
+    {
+        inventoryRecord.setQuantityOnOrder( quantity );
+    }
+    
+    public int getReorderQuantity()
+    {
+        return inventoryRecord.getReorderQuantity();
+    }
+    
+    public void setReorderQuantity( int quantity )
+    {
+        inventoryRecord.setReorderQuantity( quantity );
     }
 }
